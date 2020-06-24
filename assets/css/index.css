@@ -1,0 +1,350 @@
+/*
+	Général
+*/
+body {
+	font-family: arial, sans-serif;
+	background-color: rgba(255, 0, 122, 0.1);
+}
+/*
+	Header
+*/
+.bg-white {
+	background-color: #fff;
+}
+
+.flex-header {
+	padding-top: 15px;
+	display: flex;
+	justify-content: space-around;
+	/*box-shadow: 2px 12px 12px  #FF3ABF;*/
+}
+#header .search-input {
+	margin-top: 20px;
+	padding: 10px;
+	color: #ff007a;
+}
+
+#header .logo p{
+	padding-left: 40px;
+	position: relative;
+	top: -15px;
+	font-style: italic;
+	color: #808080;
+}
+
+#header .search input{
+	border-radius: 15px;
+	border-radius: 0.5px solid #808080;
+
+}
+
+#search-btn{
+	color: rgba(255, 0, 122, 0.7);
+}
+
+#search-btn:hover {
+	color: #ff007a;
+}
+
+/* Menu toggle */
+.menu-toggle {
+	color: #ff007a;
+	z-index: 9998;
+}
+
+.menu-toggle:focus {
+	color: #fff;
+	background: #ff007a;
+}
+
+.nav-menu {
+	position: fixed;
+	width: 15%;
+	right: 150px;
+	top: 10%;
+    text-align: center;
+	background-color: #ff007a;
+	padding: 50px;
+	z-index: 9998;
+    overflow-y: auto;
+    transition: ease-in-out 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    color: #000;
+}
+
+@media (max-width: 991.98px) {
+	.nav-menu {
+		width: 20%;
+		right: 80px;
+		top: 6%;
+	}
+}
+
+.nav-overly  {
+    width: 100%;
+    height: 100%;
+    z-index: 9997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: none;
+    transition: ease-in-out 0.2s;
+}
+
+.nav-active {
+  overflow: hidden;
+}
+
+.nav-active .nav-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-menu .flex-menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.nav-menu .flex-menu a {
+	text-decoration: none;
+	color: #fff;
+}
+.nav-menu .flex-menu a:hover {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+
+/*
+	Banner
+*/
+#banner {
+	background: url('../img/banner.jpg') center center;
+	background-attachment: fixed;
+	height: 20vh;
+	background-size: cover;
+	position: relative;
+	padding-top: 50px;
+	text-align: center;
+	color: #fff;
+	font-size: 35px;
+	text-shadow: 5px 10px 10px #000;
+}
+
+@media (min-width: 992px){
+	#banner {
+		height: 40vh;
+	}
+}
+
+#banner button {
+	background: #ff007a;
+	color: #fff;
+	font-size: 25px;
+}
+
+#banner button:hover {
+	transition: 1s;
+	background: #fff;
+	color: #ff007a;
+}
+#banner button a {
+	text-decoration: none;
+	color:#fff;
+}
+
+/*
+	Back to top button
+*/
+.back-to-top {
+  position: fixed;
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  right: 15px;
+  bottom: 15px;
+  background: rgba(255, 0, 122, 0.6);
+  color: #fff;
+  transition: display 0.5s ease-in-out;
+  z-index: 99999;
+}
+
+.back-to-top i {
+  font-size: 24px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.back-to-top:hover {
+  color: #fff;
+  background: #ff007a;
+  transition: background 0.2s ease-in-out;
+}
+/*
+	Main
+*/
+#main {
+	position: relative;
+	top: 70px;
+}
+
+.about-block {
+	position: relative;
+	top: -130px;
+	display: flex;
+	justify-content: space-around;
+	background-color: rgba(255, 255, 255, 0.1); 
+}
+
+.about-block .texte {
+	flex: 1;
+	width: 80%;
+	margin: auto;
+	color: #808080;
+	padding-left: 10px;
+}
+
+.about-block .slider {
+	flex: 1;
+}
+
+#gallerie h2, #gallerie p, #contact h2, #contact p{
+	text-align: center;
+	color: #808080;
+}
+
+.categorie {
+	margin: 10px;
+	padding: 5px;
+	border-left:  4px solid #ff007a;
+	background-color: rgba(255, 0, 122, 0.7);
+	height: 5vh;
+	color: #fff;
+}
+.categorie a {
+	text-decoration: none;
+	color: #fff;
+	float: right;
+}
+.categorie a:hover {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.articles-categorie-1, .articles-categorie-2 {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10px;
+	padding-left: 80px;
+}
+
+.article {
+	margin-right: 20px;
+	margin-top: 20px; 
+}
+
+.articles-categorie-1 img, .articles-categorie-2 img {
+	width: 200px;
+	height: 200;
+}
+
+.preview, .next{
+	background-color: #ff007a;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.articles-categorie-1 img:hover, .articles-categorie-2 img:hover {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.articles-categorie-1 .article:hover, .articles-categorie-2 .article:hover {
+	transition: 1s;
+	display: block;
+	box-shadow: 0px 0px 15px 0px #000;
+}
+
+
+i {
+	font-size: 20px;
+}
+
+.article-text {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px;
+	border-top: 0.2px solid rgba(0,0,0, 0.2);
+}
+
+.flex-items {
+	display: flex;
+	flex-direction: row;
+}
+
+/*
+	Contact
+*/
+#contact {
+	margin: 50px;
+}
+
+#contact .flex-contact-sections {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.contact-items {
+	display: flex;
+	flex-direction: column;
+	flex: 0.3; 
+	justify-content: space-around;
+	padding: 10px;
+	border-radius: 5px;
+}
+.contact-items i{
+	color: #fff;
+	background-color: rgba(255, 0, 122, 0.6);
+	padding: 10px;
+}
+.contact-items i:hover {
+	background-color: rgba(255, 0, 122, 1);
+}
+
+
+.contact-form {
+	flex: 0.6;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+#contact-form input, #contact-form textarea {
+	color: #ff007a;
+}
+
+#contact-form button {
+	background-color: rgba(255, 0, 122, 0.6);
+	color: #fff;
+}
+#contact-form button:hover {
+	background-color: rgba(255, 0, 122, 1);
+}
+
+
+/*
+	Footer
+*/
+#footer {
+	margin-top: 100px;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.9);/*rgba(255, 255, 255, 0.5);*/
+	text-align: center;
+	color: #fff;
+}
+
+#footer strong {
+	color: #ff007a;
+}
