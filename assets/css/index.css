@@ -238,7 +238,7 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 10px;
-	padding-left: 80px;
+	justify-content: space-around;
 }
 
 .article {
