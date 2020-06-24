@@ -46,6 +46,15 @@ body {
 	color: #ff007a;
 }
 
+@media (max-width: 768px) {
+	.flex-header {
+		padding-top: 15px;
+		display: flex;
+		justify-content: space-around;
+		flex-direction: column;
+	}
+}
+
 /* Menu toggle */
 .menu-toggle {
 	color: #ff007a;
@@ -73,11 +82,12 @@ body {
     color: #000;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 768px) {
 	.nav-menu {
-		width: 20%;
-		right: 80px;
-		top: 6%;
+		width: 50%;
+		left: 50px;
+		right: 100%;
+		top: 22%;
 	}
 }
 
@@ -123,7 +133,7 @@ body {
 #banner {
 	background: url('../img/banner.jpg') center center;
 	background-attachment: fixed;
-	height: 20vh;
+	height: 40vh;
 	background-size: cover;
 	position: relative;
 	padding-top: 50px;
@@ -133,9 +143,9 @@ body {
 	text-shadow: 5px 10px 10px #000;
 }
 
-@media (min-width: 992px){
+@media (max-width: 768px){
 	#banner {
-		height: 40vh;
+		height: 55vh;
 	}
 }
 
@@ -226,12 +236,13 @@ body {
 	color: #fff;
 }
 .categorie a {
-	text-decoration: none;
-	color: #fff;
+	color: rgba(255, 255, 255, 0.4);
+	font-style: italic;
+	text-decoration: underline;
 	float: right;
 }
 .categorie a:hover {
-	color: rgba(255, 255, 255, 0.5);
+	color: #fff;
 }
 
 .articles-categorie-1, .articles-categorie-2 {
@@ -248,7 +259,17 @@ body {
 
 .articles-categorie-1 img, .articles-categorie-2 img {
 	width: 200px;
-	height: 200;
+	height: 200px;
+}
+
+@media (max-width: 768px){
+	.articles-categorie-1 img, .articles-categorie-2 img {
+		width: 300px;
+		height: 300px;
+	}
+	.categorie {
+		height: 10vh;
+	}
 }
 
 .preview, .next{
@@ -297,6 +318,7 @@ i {
 	justify-content: space-around;
 }
 
+
 .contact-items {
 	display: flex;
 	flex-direction: column;
@@ -305,6 +327,26 @@ i {
 	padding: 10px;
 	border-radius: 5px;
 }
+
+@media (max-width: 768px){
+	#contact .flex-contact-sections {
+		flex-direction: column-reverse;
+	}
+	.contact-items span{
+		margin: 15px;
+	}
+
+	.contact-items span {
+		font-size: 10px;
+	}
+
+	#contact {
+		margin: 0px;
+		margin-top: 50px;
+	}
+}
+
+
 .contact-items i{
 	color: #fff;
 	background-color: rgba(255, 0, 122, 0.6);
