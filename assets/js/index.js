@@ -1,9 +1,13 @@
 !(function($) {
 	"use strict";
 
-	$(document).on('click', '.nav-menu a,.scrollto', function(e) {
+	
+
+	$(document).on('click', '.nav-menu a, .scrollto', function(e) {
 	      	e.preventDefault();
+
 		    var target = $(this.hash);
+
 		    if (target.length) {
 
 		        var scrollto = target.offset().top;
@@ -24,7 +28,11 @@
 		        $('html, body').animate({
 		          scrollTop: scrollto
 		        }, 1500, 'easeInOutExpo');
+
 		        return false;
+		    } else {
+		    	if($(this).attr('href') != undefined)
+		    		location.assign($(this).attr('href'));
 		    }
 	  });
 

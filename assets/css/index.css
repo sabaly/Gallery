@@ -257,7 +257,7 @@ body {
 	margin-top: 20px; 
 }
 
-.articles-categorie-1 img, .articles-categorie-2 img {
+.articles-categorie-1 img, .articles-categorie-2 img{
 	width: 200px;
 	height: 200px;
 }
@@ -297,7 +297,7 @@ i {
 	display: flex;
 	justify-content: space-around;
 	padding: 10px;
-	border-top: 0.2px solid rgba(0,0,0, 0.2);
+	border-top: 0.5px solid rgba(0,0,0, 0.5);
 }
 
 .flex-items {
@@ -389,4 +389,56 @@ i {
 
 #footer strong {
 	color: #ff007a;
+}
+
+
+/*
+	Details page
+*/
+/*   BreadCrumb */
+#breadcrumb ol{
+	background: rgba(255, 255, 255, 0.4);
+}
+
+#breadcrumb a {
+	color: #ff007a;
+	text-decoration: none;
+}
+
+/* List of products */
+
+.products-container{
+	padding: 10px;
+}
+
+#products {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.product img {
+	width: 300px;
+	height: 300px;
+}
+
+.product:hover {
+	box-shadow: 0px 4px 15px 0px rgba(255, 0, 122, 0.8);
+}
+
+.product {
+	width: 300px;
+	margin: 10px;
+}
+
+.product .article-text {
+	border: 0.5px solid rgba(0,0,0,0.2);
+}
+
+.categorie-menu select{
+	border-radius: 15px;
+	border: 0px;
+	color: #ff007a;
+	background: rgba(0, 0, 0, 0.9);
+	padding: 5px;
 }

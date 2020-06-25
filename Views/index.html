@@ -23,13 +23,12 @@
 	-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
 
-	<!--
-		Google Font
-	-->
+  <!--aos-master-->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 	<!--
-		Headre
+		Header
 	-->
 	<header class="container-fluid flex-header bg-white" id="header">
 		<div class="logo">
@@ -57,9 +56,9 @@
 	<!--
 		Banner
 	-->
-	<div class="container-fluid" id="banner">
+	<div class="container-fluid" id="banner" data-aos="fade-in" data-aos-offset="300" data-aos-easing="ease-in-sine">
 		<p>Gallerie de Salmy Shop</p>
-		<a href="#gallerie" class="scrollto"><button class="btn scrollto">Découvrir</button></a>
+		<a href="#gallerie" class="scrollto" ><button class="btn scrollto" data-aos="fade-in" data-aos-duration="2000" data-aos-easing="ease-in-sine">Découvrir</button></a>
 	</div>
 
 	<!--
@@ -69,7 +68,7 @@
 	<!--
 		About
 	-->
-		<div class="about-block" id="about">
+		<div class="about-block" id="about" data-aos="slide-up" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="1000">
 			<div class="texte">
 				<h2>A propos</h2>
 				<p>
@@ -121,9 +120,9 @@
 			<h5 class="categorie">
 				Categorie 1
 
-				<a href=""><span>Voir tout les produits</span></a>
+				<a href="../Tests/details-test.html"><span>Voir tout les produits</span></a>
 			</h5>
-			<div class="articles-categorie-1 bg-white">
+			<div class="articles-categorie-1 bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-1-item" class="carousel slide d-lg-block d-none" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -219,7 +218,7 @@
 			</div>
 			
 			<!-- Carousel in mobile -->
-			<div class="articles-categorie-1 bg-white">
+			<div class="articles-categorie-1 bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-1-item-mobile" class="carousel slide d-lg-none bg-white" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
@@ -266,9 +265,9 @@
 			<h5  class="categorie">
 				Categorie 2
 
-				<a href=""><span>Voir tout les produits</span></a>
+				<a href="../Tests/details-test.html"><span>Voir tout les produits</span></a>
 			</h5>
-			<div class="articles-categorie-2 bg-white">
+			<div class="articles-categorie-2 bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie2-item" class="carousel slide d-lg-block d-none" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -364,7 +363,7 @@
 			</div>
 
 			<!-- Carousel in mobile -->
-			<div class="articles-categorie-2 bg-white">
+			<div class="articles-categorie-2 bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-2-item-mobile" class="carousel slide d-lg-none bg-white" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
@@ -417,7 +416,7 @@
 				Contactez-nous
 			</p>
 
-			<div class="flex-contact-sections">
+			<div class="flex-contact-sections" data-aos = "fade-right" data-aos-duration="1000">
 				<div class="contact-items bg-white">
 					<span><i class="icofont-whatsapp rounded rounded-circle"></i> 77 000 11 22</span>
 					<span><i class="icofont-facebook rounded rounded-circle"></i> monFace </span>
@@ -487,5 +486,11 @@
 	<script type="text/javascript" src="../assets/vendor/counterup/counterup.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 	<script type="text/javascript" src="../assets/js/index.js"></script>
+
+    <!--aos master-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    	AOS.init();
+    </script>
 </body>
 </html>
