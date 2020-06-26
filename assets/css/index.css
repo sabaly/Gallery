@@ -334,9 +334,6 @@ i {
 	}
 	.contact-items span{
 		margin: 15px;
-	}
-
-	.contact-items span {
 		font-size: 10px;
 	}
 
@@ -414,6 +411,7 @@ i {
 	font-style: italic;
     display: block;
     font-size: 13px;
+    color: #ff007a;
 }
 
 .owner p{
