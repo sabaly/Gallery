@@ -51,11 +51,35 @@ class articleManager_PDO extends articleManager
 	/**
 	* @see articleManager::listArticles()
 	*/
+	public function listArticlesOfCategorie($idCategorie)
+	{
+		$sql = 'SELECT idArticle, idCategorie, image, details FROM article WHERE idCategorie ='. (int) $idCategorie;
+
+		$request = $this->db->query($sql);
+		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Article');
+		$listArticlesOfCategorie = $request->fetchAll();
+
+		/*
+		foreach ($listArticlesOfCategorie as $article)
+		{
+			$discuss->setDatedajout_discuss(new DateTime($discuss->datedajout_discuss()));
+			$discuss->setDatemodif_discuss(new DateTime($discuss->datemodif_discuss()));
+		}
+		*/
+
+		$request->closeCursor();
+
+		return $listArticlesOfCategorie;
+	}
+
+	/**
+	* @see articleManager::listArticles()
+	*/
 	public function listArticles($begin = -1, $end = -1)
 	{
 		$sql = 'SELECT idArticle, idCategorie, image, details FROM article';
 
-		// On vérifie l'intégrité des paramètres fournis.
+		//On vérifie l'intégrité des paramètres fournis.
 		if ($begin != -1 || $end != -1)
 		{
 			$sql .= ' LIMIT '.(int) $end.' OFFSET '.(int) $begin;

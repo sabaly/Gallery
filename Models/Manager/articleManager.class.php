@@ -11,4 +11,5 @@ abstract class articleManager
 	abstract protected function updateArticle(Article $article);
 	abstract protected function deleteArticle($id);
 	abstract protected function listArticles($begin = -1 , $end = -1);
+	abstract protected function listArticlesOfCategorie($idCategorie);
 }

@@ -4,7 +4,7 @@
  */
 class Article
 {
-	private $idArticle,
+	public $idArticle,
 			$idCategorie,
 			$image,
 			$details;

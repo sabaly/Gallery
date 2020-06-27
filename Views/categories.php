@@ -1,3 +1,16 @@
+<?php
+	require "../Models/autoload.php";
+	$db = DBFactory::getMysqlConnexionWithPDO();
+
+	/*
+		Récupération des catégories
+	*/
+	//{
+		$categorieManager = new categorieManager_PDO($db);
+		$categories = $categorieManager->listcategories();
+	//}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,81 +79,23 @@
 			</ol>
 		</nav>
 
+
 		<!-- Article -->
 		<article class="bg-white products-container">
 			<div class="categorie-menu">
-				<select>
-					<option>Catégorie 1</option>
-					<option>Catégorie 2</option>
-					<option>Catégorie 3</option>
-					<option>Catégorie 4</option>
+				<select onchange="reloadCategorie(this)">
+					<?php 
+						foreach ($categories as $categorie) {
+					?>
+					<option value="<?=$categorie->idCategorie() ; ?>"><?= $categorie->nameCategorie() ?></option>
+					<?php } ?>
 				</select>
 			</div>
 
 			<div id="products">
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-5.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-7.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-3.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-1.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-2.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-6.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
-
-				<div class="product" data-aos="flip-up" data-aos-duration="2000">
-					<img src="../assets/img/portfolio-4.jpg" class="d-block" />
-					<div class="article-text">
-						<i class="icofont-like"></i>
-						<i class="icofont-heart"></i>
-						<i class="icofont-eye" title="Détails"></i>
-					</div>
-				</div>
+				
 			</div>
+
 		</article>
 	</main>
 

@@ -1,7 +1,6 @@
 !(function($) {
 	"use strict";
 
-	
 
 	$(document).on('click', '.nav-menu a, .scrollto', function(e) {
 	      	e.preventDefault();
@@ -113,6 +112,12 @@
 	      });
 	});
 
+	/*
+		page categorie
+	*/
+	if($(".categorie-menu select").length)
+		reloadCategorie($(".categorie-menu select"));
+
 })(jQuery);
 
 function colorLogo() {
@@ -128,4 +133,64 @@ function colorLogo() {
 		colorLogo();
 	}, 1000);
 
+}
+
+function reloadCategorie($categorie) {
+	$.ajax({
+		type : 'POST',
+		url : '../Controllers/loadArticlesController.php',
+		data : 'id='+$($categorie).children('option:selected').val(),
+		success: function(msg) {
+			//alert(msg);
+			$('#products > div').remove();
+
+			var $articles = JSON.parse(msg);
+			if(isEmpty($articles))
+				location.reload();
+
+			for (key in $articles) {
+				let $article = JSON.parse($articles[key]);
+				var div = $('<div/>', {
+					'class' : 'product',
+					'data-aos' : 'flip-up',
+					'data-aos-duration' : '2000',
+				}).appendTo('#products');
+
+				var img = $('<img/>', {
+					'src' : '../assets/img/'+$article.image,
+					'class' : 'd-block',
+				}).appendTo(div);
+
+				var divChild = $('<div/>', {
+					'class' : 'article-text'
+				}).appendTo(div);
+
+				var like = $('<i/>', {
+					'class' : 'icofont-like'
+				}).appendTo(divChild);
+
+				var heart = $('<i/>', {
+					'class' : 'icofont-heart'
+				}).appendTo(divChild);
+
+				var eye = $('<i/>', {
+					'class' : 'icofont-eye'
+				}).appendTo(divChild);
+			}
+
+		},
+		error: function(erreur) {
+			alert(erreur);
+		}
+	});
+}
+
+
+
+function isEmpty(obj) {
+	for( key in obj) {
+		if(obj.hasOwnProperty(key))
+			return false;
+	}
+	return true;
 }
