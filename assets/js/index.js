@@ -35,6 +35,9 @@
 		    }
 	  });
 
+	//Load categories and articles
+	loadCategories();
+
 	// Toggle .header-scrolled class to #header when page is scrolled
 	$(window).scroll(function() {
 	    if ($(this).scrollTop() > 100) {
@@ -193,4 +196,26 @@ function isEmpty(obj) {
 			return false;
 	}
 	return true;
+}
+
+function loadCategories() {
+	$.ajax({
+		type : 'GET',
+		url : '../Controllers/loadCategoriesController.php',
+		success: function(msg) {
+			let categories = JSON.parse(msg);
+
+			for (var i = 0; i < categories.length; i++) {
+
+				$.ajax({
+					type: 'POST',
+					url : '../Controllers/loadArticlesController.php',
+					data: 'id='+categories[i].idCategorie,
+					success : function(message) {
+						let articles = JSON.parse(message);
+					}
+				});
+			}
+		}
+	})
 }
