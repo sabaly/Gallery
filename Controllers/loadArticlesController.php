@@ -10,12 +10,6 @@ if(isset($_POST['id']))
 
 	$articles = $articleManager->listArticlesOfCategorie($_POST['id']);
 
-	$data = array();
-	foreach ($articles as $article)
-	{
-		$data[$article->idArticle()] = json_encode($article);
-	}
-
-	echo json_encode($data);
+	echo json_encode($articles);
 }
 ?>

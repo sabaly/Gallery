@@ -49,7 +49,7 @@ class articleManager_PDO extends articleManager
 	}
 
 	/**
-	* @see articleManager::listArticles()
+	* @see articleManager::listArticlesOfCategorie()
 	*/
 	public function listArticlesOfCategorie($idCategorie)
 	{
@@ -100,5 +100,31 @@ class articleManager_PDO extends articleManager
 		$request->closeCursor();
 
 		return $listArticle;
+	}
+
+	/**
+	* @see articleManager::getUnique()
+	*/
+
+	public function getUnique($id)
+	{
+		$sql = 'SELECT idArticle, idCategorie, image, details FROM article WHERE idArticle = :id';
+		$request = $this->db->prepare($sql);
+		$request->bindValue(':id', (int) $id);
+		$request->execute();
+
+		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Article');
+		$article = $request->fetchAll();
+
+		/*
+		$article->setDatedajout_discuss(new DateTime($article->datedajout_discuss()));
+		$article->setDatemodif_discuss(new DateTime($article->datemodif_discuss()));
+		*/
+		if(is_bool($article))
+			return false;
+
+		$request->closeCursor();
+
+		return $article;
 	}
 }

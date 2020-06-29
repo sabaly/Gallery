@@ -30,6 +30,11 @@ class Article
 		}
 	}
 
+	function isNew()
+	{
+		return empty($this->idArticle);
+	}
+
 	//setters
 	public function setIdArticle($id)
 	{
