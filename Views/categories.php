@@ -9,7 +9,6 @@
 		$categorieManager = new categorieManager_PDO($db);
 		$categories = $categorieManager->listcategories();
 	//}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,7 +92,6 @@
 			</div>
 
 			<div id="products">
-				
 			</div>
 
 		</article>

@@ -5,7 +5,7 @@
  */
 class Categorie
 {
-	private $idCategorie,
+	public $idCategorie,
 			$nameCategorie,
 			$describeCategorie;
 	
@@ -17,7 +17,7 @@ class Categorie
 		}
 	}
 
-	//fonction pour hydrater un objet
+	//function to hydrate object
 	public function hydrate($data)
 	{
 		foreach ($data as $attribut => $value)
@@ -28,6 +28,12 @@ class Categorie
 				$this->$methode($value);
 			}
 		}
+	}
+
+	//Check if it's new
+	function isNew()
+	{
+		return empty($this->idCategorie);
 	}
 
 	//setters

@@ -1,12 +1,11 @@
 <?php
 	require "../Models/autoload.php";
 	$db = DBFactory::getMysqlConnexionWithPDO();
-
+	$categorieManager = new categorieManager_PDO($db);
+	
 	//For categorie form
 	if(isset($_POST['nameCategorie']))
 	{
-		$categorieManager = new categorieManager_PDO($db);
-
 		$categorie = new Categorie
 		(
 			[
@@ -17,9 +16,21 @@
 		if(isset($_POST['describeCategorie']))
 			$categorie->setDescribeCategorie(htmlspecialchars($_POST['describeCategorie']));
 
-		$categorieManager->addCategorie($categorie);
+		if(isset($_POST['idCategorie']))
+			$categorie->setIdCategorie($_POST['idCategorie']);
 
-		echo 'OK';
+		if($categorie->isNew())
+		{
+			$categorieManager->addCategorie($categorie);
+			echo 'ADDED';
+		}
+		else
+		{
+			
+			$categorieManager->updateCategorie($categorie);
+			echo "UPDATED";
+		}
+
 	}
 
 	if(isset($_POST['idCategorie']) && isset($_FILES['image']))
@@ -48,6 +59,19 @@
 		{
 			echo 'CREATION_ARTICLE_ERROR';
 		}
+	}
+
+	if(isset($_GET['upd']))
+	{
+		$categorie = $categorieManager->getUnique($_GET['upd']);
+
+		echo json_encode($categorie);
+	}
+
+	if(isset($_GET['del']))
+	{
+		$categorieManager->deleteCategorie($_GET['del']);
+		echo 'DELETED';
 	}
 
 ?>

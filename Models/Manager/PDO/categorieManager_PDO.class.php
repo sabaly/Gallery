@@ -75,4 +75,30 @@ class categorieManager_PDO extends categorieManager
 
 		return $listCategorie;
 	}
+
+	/**
+	* @see Manager\categorieManager::getUnique()
+	*/
+
+	public function getUnique($id)
+	{
+		$sql = 'SELECT idCategorie, nameCategorie, describeCategorie FROM categorie WHERE idCategorie = :id';
+		$request = $this->db->prepare($sql);
+		$request->bindValue(':id', (int) $id);
+		$request->execute();
+
+		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Categorie');
+		$categorie = $request->fetchAll();
+
+		/*
+		$categorie->setDatedajout_discuss(new DateTime($categorie->datedajout_discuss()));
+		$categorie->setDatemodif_discuss(new DateTime($categorie->datemodif_discuss()));
+		*/
+		if(is_bool($categorie))
+			return false;
+
+		$request->closeCursor();
+
+		return $categorie;
+	}
 }

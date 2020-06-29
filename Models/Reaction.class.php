@@ -5,7 +5,7 @@
 class Reaction
 {
 
-	private $idReaction,
+	public $idReaction,
 			$idArticle,
 			$idClient,
 			$type;

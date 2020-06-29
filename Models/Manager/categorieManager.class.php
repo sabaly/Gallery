@@ -11,4 +11,5 @@ abstract class categorieManager
 	abstract protected function updateCategorie(Categorie $categorie);
 	abstract protected function deleteCategorie($id);
 	abstract protected function listCategories($begin = -1 , $end = -1);
+	abstract protected function getUnique($id);
 }
