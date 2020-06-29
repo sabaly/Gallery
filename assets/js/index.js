@@ -252,7 +252,7 @@ function loadCategories() {
 
 							
 						}else {
-							//moreThanFourArticles(articles, articleCategorie, j);
+							moreThanFourArticles(articles, articleCategorie, j);
 						}
 
 						//On mobile
@@ -334,7 +334,7 @@ function loadCategories() {
 function moreThanFourArticles(articles, articleCategorie, index) {
 	let carousel = $('<div/>', {
 		class: 'carousel slide d-lg-block d-none',
-		'data-ride': 'slide',
+		'data-ride': 'carousel',
 		id: 'categorie'+index+'-item'
 	}).appendTo(articleCategorie);
 
@@ -343,30 +343,29 @@ function moreThanFourArticles(articles, articleCategorie, index) {
 	}).appendTo(carousel);
 
 	for (var i = 0; i < Math.trunc(articles.length/4)+1; i++) {
+		if (i==0) { active = 'active'; }else{active = ''; }
 		let carouselItem = $('<div/>', {
-			class: 'carousel-item',
+			class: 'carousel-item '+ active
 		}).appendTo(carouselInner);
 
 		let flexItems = $('<div/>', {
 			class: 'flex-items w-100'
 		}).appendTo(carouselItem);
 
-		let k;
 		
 		for (var j = i*4; j < (i+1)*4; j++) {
-			if(j >= articles.length)
-				k = j % articles.length;
 
 			let article = $('<div/>', {
 				class: 'article w-40 h-40'
 			}).appendTo(flexItems);
 
 			let articleImage = $('<img/>', {
-				src: '../assets/img/'+articles[k].image,
+				src: '../assets/img/'+articles[j % articles.length].image,
 				class: 'd-block'
 			}).appendTo(article);
 		}
 	}
+
 	let prev = $('<a/>', {
 		class: 'carousel-control-prev',
 		href: '#categorie'+index+'-item',
