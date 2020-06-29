@@ -205,17 +205,197 @@ function loadCategories() {
 		success: function(msg) {
 			let categories = JSON.parse(msg);
 
-			for (var i = 0; i < categories.length; i++) {
+			for (var c = 0; c < categories.length; c++) {
+				let j=c+1;
+				let categorie = $('<h5/>', {
+					class: 'categorie'
+				}).text(categories[c].nameCategorie);
+
+				let link = $('<a/>', {
+					'href': 'categorie.php',
+				}).appendTo(categorie);
+
+				let text = $('<span/>').text('Voir tous les produits').appendTo(link);
+				let articleCategorie;
+
 
 				$.ajax({
 					type: 'POST',
 					url : '../Controllers/loadArticlesController.php',
-					data: 'id='+categories[i].idCategorie,
+					data: 'id='+categories[c].idCategorie,
 					success : function(message) {
+						//get all the articles of our categorie
 						let articles = JSON.parse(message);
+
+						//check if there is articles in it
+						if(articles.length != 0){
+							categorie.appendTo('#gallerie');
+
+							articleCategorie = $('<div/>', {
+								class: 'articles-categorie bg-white',
+								'data-aos': 'fade-in',
+								'data-aos-duration': '1500'
+							}).appendTo('#gallerie');
+						}
+
+						if(articles.length <= 4) {
+							for (var i = 0; i < articles.length; i++) {
+								let article = $('<div/>', {
+									class: 'article w-40 h-40 d-none d-lg-block'
+								}).appendTo(articleCategorie);
+
+								let articleImage = $('<img/>', {
+									src: '../assets/img/'+articles[i].image,
+									class: 'd-block'
+								}).appendTo(article);
+							}
+
+							
+						}else {
+							//moreThanFourArticles(articles, articleCategorie, j);
+						}
+
+						//On mobile
+						if(articles.length > 1) {
+							let carousel = $('<div/>', {
+								id: 'categorie-'+ j + '-item-mobile',
+								class: 'carousel slide d-lg-none bg-white',
+								'data-ride': 'carousel'
+							}).appendTo(articleCategorie);
+
+							let carouselInner = $('<div/>', {
+								class: 'carousel-inner'
+							}).appendTo(carousel);
+
+							for (var i = 0; i < articles.length; i++) {
+								if (i==0) { active = 'active'; }else{active = ''; }
+								let carouselItem = $('<div/>', {
+									class: 'carousel-item '+ active
+								}).appendTo(carouselInner);
+
+								let article = $('<div/>', {
+									class: 'article w-40 h-40'
+								}).appendTo(carouselItem);
+
+								let articleImage = $('<img/>', {
+									src: '../assets/img/'+articles[i].image,
+									class: 'd-block'
+								}).appendTo(article);
+							}
+
+							let prev = $('<a/>', {
+								class: 'carousel-control-prev',
+								href: '#categorie-'+ j + '-item-mobile',
+								role: 'button',
+								'data-slide': 'prev'
+							}).appendTo(carousel);
+
+							$('<span/>', {
+								class: 'carousel-control-prev-icon preview rounded rounded-circle',
+								'aria-hidden': 'true'
+							}).appendTo(prev);
+
+							$('<span/>', {
+								class: 'sr-only'
+							}).appendTo(prev);
+
+							let next = $('<a/>', {
+								class: 'carousel-control-next',
+								href: '#categorie-'+ j + '-item-mobile',
+								role: 'button',
+								'data-slide': 'next'
+							}).appendTo(carousel);
+
+							$('<span/>', {
+								class: 'carousel-control-next-icon preview rounded rounded-circle',
+								'aria-hidden': 'true'
+							}).appendTo(next);
+
+							$('<span/>', {
+								class: 'sr-only'
+							}).appendTo(next);
+						}else if(articles.length == 1) {
+							let article = $('<div/>', {
+								class: 'article w-40 h-40 d-lg-none'
+							}).appendTo(articleCategorie);
+
+							let articleImage = $('<img/>', {
+								src: '../assets/img/'+articles[0].image,
+								class: 'd-block'
+							}).appendTo(article);
+						}
 					}
 				});
 			}
 		}
 	})
+}
+
+function moreThanFourArticles(articles, articleCategorie, index) {
+	let carousel = $('<div/>', {
+		class: 'carousel slide d-lg-block d-none',
+		'data-ride': 'slide',
+		id: 'categorie'+index+'-item'
+	}).appendTo(articleCategorie);
+
+	let carouselInner = $('<div/>', {
+		class: 'carousel-inner'
+	}).appendTo(carousel);
+
+	for (var i = 0; i < Math.trunc(articles.length/4)+1; i++) {
+		let carouselItem = $('<div/>', {
+			class: 'carousel-item',
+		}).appendTo(carouselInner);
+
+		let flexItems = $('<div/>', {
+			class: 'flex-items w-100'
+		}).appendTo(carouselItem);
+
+		let k;
+		
+		for (var j = i*4; j < (i+1)*4; j++) {
+			if(j >= articles.length)
+				k = j % articles.length;
+
+			let article = $('<div/>', {
+				class: 'article w-40 h-40'
+			}).appendTo(flexItems);
+
+			let articleImage = $('<img/>', {
+				src: '../assets/img/'+articles[k].image,
+				class: 'd-block'
+			}).appendTo(article);
+		}
+	}
+	let prev = $('<a/>', {
+		class: 'carousel-control-prev',
+		href: '#categorie'+index+'-item',
+		role: 'button',
+		'data-slide': 'prev'
+	}).appendTo(carousel);
+
+	$('<span/>', {
+		class: 'carousel-control-prev-icon preview rounded rounded-circle',
+		'aria-hidden': 'true'
+	}).appendTo(prev);
+
+	$('<span/>', {
+		class: 'sr-only'
+	}).appendTo(prev);
+
+	let next = $('<a/>', {
+		class: 'carousel-control-next',
+		href: '#categorie'+index+'-item',
+		role: 'button',
+		'data-slide': 'next'
+	}).appendTo(carousel);
+
+	$('<span/>', {
+		class: 'carousel-control-next-icon preview rounded rounded-circle',
+		'aria-hidden': 'true'
+	}).appendTo(next);
+
+	$('<span/>', {
+		class: 'sr-only'
+	}).appendTo(next);
 }

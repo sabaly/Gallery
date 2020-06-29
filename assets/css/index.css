@@ -16,7 +16,6 @@ body {
 	padding-top: 15px;
 	display: flex;
 	justify-content: space-around;
-	/*box-shadow: 2px 12px 12px  #FF3ABF;*/
 }
 #header .search-input {
 	margin-top: 20px;
@@ -245,7 +244,7 @@ body {
 	color: #fff;
 }
 
-.articles-categorie-1, .articles-categorie-2 {
+.articles-categorie {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 10px;
@@ -257,13 +256,13 @@ body {
 	margin-top: 20px; 
 }
 
-.articles-categorie-1 img, .articles-categorie-2 img{
+.articles-categorie img{
 	width: 200px;
 	height: 200px;
 }
 
 @media (max-width: 768px){
-	.articles-categorie-1 img, .articles-categorie-2 img {
+	.articles-categorie img {
 		width: 300px;
 		height: 300px;
 	}
@@ -278,11 +277,11 @@ body {
 	font-size: 20px;
 }
 
-.articles-categorie-1 img:hover, .articles-categorie-2 img:hover {
+.articles-categorie img:hover {
 	background: rgba(0, 0, 0, 0.5);
 }
 
-.articles-categorie-1 .article:hover, .articles-categorie-2 .article:hover {
+.article:hover, .article:hover {
 	transition: 1s;
 	display: block;
 	box-shadow: 0px 0px 15px 0px #000;
