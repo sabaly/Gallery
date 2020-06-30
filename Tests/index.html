@@ -124,7 +124,7 @@
 
 				<a href="details-test.html"><span>Voir tout les produits</span></a>
 			</h5>
-			<div class="articles-categorie-1 bg-white" data-aos = "fade-in" data-aos-duration="1500">
+			<div class="articles-categorie bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-1-item" class="carousel slide d-lg-block d-none" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -220,7 +220,7 @@
 			</div>
 			
 			<!-- Carousel in mobile -->
-			<div class="articles-categorie-1 bg-white" data-aos = "fade-in" data-aos-duration="1500">
+			<div class="articles-categorie bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-1-item-mobile" class="carousel slide d-lg-none bg-white" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
@@ -269,7 +269,7 @@
 
 				<a href="details-test.html"><span>Voir tout les produits</span></a>
 			</h5>
-			<div class="articles-categorie-2 bg-white" data-aos = "fade-in" data-aos-duration="1500">
+			<div class="articles-categorie bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie2-item" class="carousel slide d-lg-block d-none" data-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -365,7 +365,7 @@
 			</div>
 
 			<!-- Carousel in mobile -->
-			<div class="articles-categorie-2 bg-white" data-aos = "fade-in" data-aos-duration="1500">
+			<div class="articles-categorie bg-white" data-aos = "fade-in" data-aos-duration="1500">
 				<div id="categorie-2-item-mobile" class="carousel slide d-lg-none bg-white" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="carousel-item active">
@@ -407,6 +407,54 @@
 				</div>
 			</div>
 		</div>
+		<!--
+			Signin section
+		-->
+		<div id="connect">
+			<h2>Connexion</h2>
+			<hr style="width: 20%; background-color: rgb(255, 45, 150); height:0.5px;" />
+			<p>
+				Créer un compte ou connectez-vous.<br> En m'indiquant vos préférences vous me permettrez de selectionner les meilleurs produits à vous offrir.<br> Pour celà, en quelques clique, créer votre compte et connectez-vous. 
+			</p>
+			<div class="sign">
+				<div class="signin bg-white rounded rounded-circle" data-aos='flip-up' data-aos-duration = '1500' data-aos-offset="300" data-aos-easing="ease-in-sine">
+					<form id="signin-form">
+						<div class="form-group">
+							<input type="text" name="nom" class="form-control identifiant" placeholder="identifiant" >
+							<span class="alert d-none"></span>
+						</div>
+						<div class="form-group">
+							<input type="password" name="motDePass" class="psswd form-control" placeholder="mote de passe">
+							<span class="alert d-none"></span>
+						</div>
+						<div class="form-group">
+							<input type="password" name="mdp-conf" class="psswd-conf form-control" placeholder="confirmer le mot de passe">
+							<span class="alert d-none"></span>
+						</div>
+
+						<div class="text-center">
+			            	<button type="submit" class="btn">S'inscrie</button>
+			            </div>
+					</form>
+				</div>
+
+				<div class="login bg-white  rounded rounded-circle" data-aos='flip-down' data-aos-duration = '1500' data-aos-offset="300" data-aos-easing="ease-in-sine">
+					<form id="login-form">
+						<div class="form-group">
+							<input type="text" name="pseudo" class="pseudo form-control" placeholder="identifiant">
+						</div>
+						<div class="form-group">
+							<input type="password" name="psswd" class="form-control" placeholder="mot de passe">
+							<span class="alert connexion d-none"></span>
+						</div>
+
+						<div class="text-center">
+			            	<button type="submit" class="btn" >Se connecter</button>
+			            </div>
+					</form>
+				</div>
+		</div>
+
 
 		<!--
 			Contact
@@ -496,7 +544,7 @@
 	<script type="text/javascript" src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
 	<script type="text/javascript" src="../assets/vendor/counterup/counterup.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script type="text/javascript" src="../assets/js/index.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 
     <!--aos master-->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

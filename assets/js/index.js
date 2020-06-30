@@ -121,6 +121,89 @@
 	if($(".categorie-menu select").length)
 		reloadCategorie($(".categorie-menu select"));
 
+	/*
+		submit forms for inscription or connexion
+	*/
+	//signin form
+	$('#signin-form').submit(function(e) {
+		e.preventDefault();
+		$('.identifiant').addClass('error');
+		/* 		Regles de validité */
+		if (!checkValidity($('.identifiant')) || !checkValidity($('.psswd')))
+			return false;
+		if($('.psswd-conf').val() != $('.psswd').val()) {
+			$('.psswd-conf').css({
+				border: '1px groove #f00'
+			});
+			return false;
+		}else {
+			$('.psswd-conf').css({
+				border: '1px groove #0f0'
+			});
+		}
+
+		$.ajax({
+			type: 'GET',
+			url: '../Controllers/subscribeFormController.php',
+			data: $(this).serialize(),
+			success: function(msg) {
+				alert(msg);
+				if(msg == 'SUBSCRIBED') {
+					$('.pseudo').val($('.identifiant').val());
+					$('#signin-form')[0].reset();
+					$('#signin-form input').css({
+						border: '1px solid rgba(255, 0, 122, 0.3)'
+					});
+				}
+			}
+		});
+	});
+
+	//login form
+	$('#login-form').submit(function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			type: 'GET',
+			url: '../Controllers/loginFormController.php',
+			data: $(this).serialize(),
+			success: function(msg) {
+				if(msg == 'OK') {
+					alert('Connecté avec succès');
+
+					var scrollto = $('#gallerie').offset().top;
+					$('html, body').animate({
+						scrollTop: scrollto 
+					}, 1500, 'easeInOutExpo', function() {
+						$('.connexion').removeClass('d-none');
+						$('.connexion').css({
+							color: '#0f0'
+						});
+						$('.connexion').html('Vous êtes connecté');
+						$('#login-form')[0].reset();
+						$('.identifiant').css({
+							border: '1px groove rgba(255, 0, 122, 0.3)'
+						});
+						$('#login-form input').attr('disabled', 'disabled');
+					});
+				}else if(msg == 'NOT_EXISTS') {
+					$('.connexion').removeClass('d-none').hide();
+					$('.connexion').html('Créer un compte').slideDown(1000);
+					$('.identifiant').css({
+						border: '1px groove #f00'
+					});
+				}else if(msg == 'ERROR_PSSWD') {
+					$('.connexion').removeClass('d-none').hide();
+					$('.connexion').html('Mot de passe incorrecte').slideDown(1000);
+				}
+			},
+			complete: function () {
+				if(!$('.connexion').hasClass('d-none'))
+					$('.connexion').removeClass('d-none');
+			}
+		});
+	});
+
 })(jQuery);
 
 function colorLogo() {
@@ -148,11 +231,11 @@ function reloadCategorie($categorie) {
 			$('#products > div').remove();
 
 			var $articles = JSON.parse(msg);
-			if(isEmpty($articles))
+			if($articles.length == 0)
 				location.reload();
 
-			for (key in $articles) {
-				let $article = JSON.parse($articles[key]);
+			for (let i = 0; i < $articles.length;  i++) {
+
 				var div = $('<div/>', {
 					'class' : 'product',
 					'data-aos' : 'flip-up',
@@ -160,7 +243,7 @@ function reloadCategorie($categorie) {
 				}).appendTo('#products');
 
 				var img = $('<img/>', {
-					'src' : '../assets/img/'+$article.image,
+					'src' : '../assets/img/'+$articles[i].image,
 					'class' : 'd-block',
 				}).appendTo(div);
 
@@ -212,7 +295,7 @@ function loadCategories() {
 				}).text(categories[c].nameCategorie);
 
 				let link = $('<a/>', {
-					'href': 'categorie.php',
+					'href': 'categories.php',
 				}).appendTo(categorie);
 
 				let text = $('<span/>').text('Voir tous les produits').appendTo(link);
@@ -397,4 +480,23 @@ function moreThanFourArticles(articles, articleCategorie, index) {
 	$('<span/>', {
 		class: 'sr-only'
 	}).appendTo(next);
+}
+
+function checkValidity(element) {
+	if(element.val().length < 4) {
+		element.css({
+			border: '1px groove #f00',
+		});
+		element.next().removeClass('d-none').hide();
+		element.next().html('Il faut au moins 4 caractères')
+		.css({color: '#f00', float: 'left'}).slideDown(1000);
+		return false;
+	}else {
+		element.css({
+			border: '1px groove #0f0',
+		});
+		element.next().addClass('d-none');
+	}
+
+	return true;
 }

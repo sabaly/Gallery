@@ -5,6 +5,16 @@ body {
 	font-family: Poppins, sans-serif;
 	background-color: rgba(255, 0, 122, 0.1);
 }
+
+.error {
+	border: 1px solid #f00;
+}
+.alert {
+	font-size: 10px;
+}
+.connexion {
+	font-size: 20px;
+}
 /*
 	Header
 */
@@ -221,7 +231,7 @@ body {
 	flex: 1;
 }
 
-#gallerie h2, #gallerie p, #contact h2, #contact p{
+#gallerie h2, #gallerie p, #contact h2, #contact p, #connect h2, #connect p{
 	text-align: center;
 	color: #808080;
 }
@@ -257,8 +267,8 @@ body {
 }
 
 .articles-categorie img{
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 }
 
 @media (max-width: 768px){
@@ -282,7 +292,7 @@ body {
 }
 
 .article:hover, .article:hover {
-	transition: 1s;
+	transition: 0.4s;
 	display: block;
 	box-shadow: 0px 0px 15px 0px #000;
 }
@@ -304,9 +314,79 @@ i {
 	flex-direction: row;
 }
 
+
+/*
+	Forms login and sigin
+*/
+#connect {
+	margin: 40px;
+}
+
+.sign {
+	margin: 20px;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.signin, .login {
+	flex: 1;
+	text-align: center;
+	width: 40%;
+	margin: auto;
+	height: 70vh;
+	/*background: rgba(0, 0, 0, 0.9);*/
+}
+
+
+#signin-form, #login-form {
+	margin: 10px;
+	padding: 10px;
+	color: #fff;
+	width: 50%;
+	color: #ff007a;
+	text-align: center;
+	position: relative;
+	left: 25%;
+	top: 25%;
+}
+
+
+#signin-form input, #login-form input {
+	border-color: rgba(255, 0, 122, 0.3);
+}
+
+#signin-form button, #login-form button {
+	background-color: rgba(255, 0, 122, 0.6);
+	color: #fff;
+}
+#signin-form button:hover, #login-form button:hover {
+	background-color: #ff007a;
+}
+@media (max-width: 768px) {
+	.sign {
+		flex-direction: column;
+	}
+
+	.signin, .login {
+		width: 100%;
+	}
+
+
+	#signin-form, #login-form {
+		top: 10px;
+		width: 40%;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+}
+
 /*
 	Contact
 */
+
 #contact {
 	margin: 50px;
 }

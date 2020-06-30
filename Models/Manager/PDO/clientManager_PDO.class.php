@@ -38,6 +38,7 @@ class clientManager_PDO extends clientManager
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Client');
 		$client = $request->fetch();
 
+
 		return $client;		
 	}
 
