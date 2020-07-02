@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
+	<title>Tests | Salmy Business Shop</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+	<!--
+		Vendor CSS
+	-->
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/icofont/icofont.min.css">
+	<link rel="stylesheet" type="text/css" href="../assets/vendor/animate.css/animate.css">
+
+	<!--
+		Project css files
+	-->
+	<link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+
+
+  	<!--aos-master-->
+  	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+	<main>
+		<button class="button-toggle">Toggle</button>
+		<div class="login bg-white d-none rounded rounded-circle" data-aos='flip-down' data-aos-duration = '1500' data-aos-offset="300" data-aos-easing="ease-in-sine">
+			<form id="login-form">
+				<div class="form-group">
+					<input type="text" name="pseudo" class="pseudo form-control" placeholder="identifiant">
+				</div>
+				<div class="form-group">
+					<input type="password" name="psswd" class="form-control" placeholder="mot de passe">
+					<span class="alert connexion d-none"></span>
+				</div>
+
+				<div class="text-center">
+	            	<button type="submit" class="btn" >Se connecter</button>
+	            </div>
+			</form>
+		</div>
+	</main>
+
+	<!--
+		Vendor JS
+	-->
+	<script type="text/javascript" src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+  	<script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  	<script src="../assets/vendor/jquery.color/jquery.color.js"></script>
+	<script type="text/javascript" src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+	<script type="text/javascript" src="../assets/vendor/counterup/counterup.min.js"></script>
+    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	
+	<!-- JS files -->
+	<script type="text/javascript" src="../assets/js/functions.js"></script>
+	<script type="text/javascript" src="../assets/js/index.js"></script>
+
+	<!--aos master-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    	AOS.init();
+    </script>
+	<script type="text/javascript">
+		!(function($) {
+			toggleLogin();
+		})(jQuery);
+
+		function toggleLogin() {
+			if($('.login').length) {
+				var login = $('.login').clone().prop({
+					class : 'toggled-login'
+				});
+
+				$('body main').append(login);
+				$('body main').append('<div class="nav-overly"></div>');
+
+			   	$(document).on('click', '.button-toggle', function(e) {
+			   		$('body main').toggleClass('nav-active');
+			        $('.toggled-login').fadeIn(1500);
+			        $('.nav-overly').toggle();
+			   	});
+		        
+		   
+
+			    $(document).click(function(e) {
+			        var container = $(".toggled-login");
+			        if (!container.is(e.target) && container.has(e.target).length === 0) {
+				        if ($('body main').hasClass('nav-active')) {
+					        $('body main').removeClass('nav-active');
+			        		$('.nav-overly').fadeOut(1000);
+				        }
+			      	}
+			    });
+
+			}else if ($(".toggled-login").length) {
+			    $(".toggled-login").hide();
+			}
+		}
+	</script>
+</body>
+</html>

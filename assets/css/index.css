@@ -15,6 +15,9 @@ body {
 .connexion {
 	font-size: 20px;
 }
+.react {
+	color: #ff007a;
+}
 /*
 	Header
 */
@@ -27,7 +30,7 @@ body {
 	display: flex;
 	justify-content: space-around;
 }
-#header .search-input {
+#header .status-menu {
 	margin-top: 20px;
 	padding: 10px;
 	color: #ff007a;
@@ -41,17 +44,17 @@ body {
 	color: #808080;
 }
 
-#header .search input{
-	border-radius: 15px;
-	border-radius: 0.5px solid #808080;
 
-}
-
-#search-btn{
+#status-btn{
 	color: rgba(255, 0, 122, 0.7);
 }
 
-#search-btn:hover {
+.status {
+	padding: 10px;
+	color: #0f0;
+}
+
+#status-btn:hover {
 	color: #ff007a;
 }
 
@@ -159,15 +162,15 @@ body {
 }
 
 #banner button {
-	background: #ff007a;
+	background: rgba(255, 0, 122, 0.3);
 	color: #fff;
 	font-size: 25px;
 }
 
 #banner button:hover {
 	transition: 1s;
-	background: #fff;
-	color: #ff007a;
+	color: #fff;
+	background: #ff007a;
 }
 #banner button a {
 	text-decoration: none;
@@ -230,6 +233,17 @@ body {
 .about-block .slider {
 	flex: 1;
 }
+.about-block button {
+	background: rgba(255, 0, 122, 0.3);
+	color: #fff;
+	font-size: 15px;
+}
+.about-block button:hover {
+	transition: 0.3s;
+	color: #fff;
+	background: #ff007a;
+}
+
 
 #gallerie h2, #gallerie p, #contact h2, #contact p, #connect h2, #connect p{
 	text-align: center;
@@ -329,17 +343,16 @@ i {
 }
 
 
-.signin, .login {
+.signin, .login, .toggled-login {
 	flex: 1;
 	text-align: center;
 	width: 40%;
 	margin: auto;
 	height: 70vh;
-	/*background: rgba(0, 0, 0, 0.9);*/
 }
 
 
-#signin-form, #login-form {
+#signin-form, #login-form, #catlogin-form {
 	margin: 10px;
 	padding: 10px;
 	color: #fff;
@@ -352,15 +365,15 @@ i {
 }
 
 
-#signin-form input, #login-form input {
+#signin-form input, #login-form input, #catlogin-form input {
 	border-color: rgba(255, 0, 122, 0.3);
 }
 
-#signin-form button, #login-form button {
+#signin-form button, #login-form button, #catlogin-form button {
 	background-color: rgba(255, 0, 122, 0.6);
 	color: #fff;
 }
-#signin-form button:hover, #login-form button:hover {
+#signin-form button:hover, #login-form button:hover, #catlogin-form button {
 	background-color: #ff007a;
 }
 @media (max-width: 768px) {
@@ -381,6 +394,7 @@ i {
 		padding-left: 2px;
 		padding-right: 2px;
 	}
+
 }
 
 /*
@@ -548,10 +562,52 @@ i {
 	border: 0.5px solid rgba(0,0,0,0.2);
 }
 
+.article-text a {
+	text-decoration: none;
+	color: #808080;
+}
+
 .categorie-menu select{
 	border-radius: 15px;
 	border: 0px;
 	color: #ff007a;
 	background: rgba(0, 0, 0, 0.9);
 	padding: 5px;
+}
+
+
+/* show */
+.details-show {
+	margin-top: 20px;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	justify-content: space-around;
+	padding: 20px;
+	color: #fff;
+}
+
+.details-show aside {
+	flex: 0.7;
+}
+
+.details-show aside img {
+	width: 90%;
+}
+.details-show article {
+	flex: 0.3;
+	padding: 10px;
+}
+.details-show article h2{
+	color: #ff007a;
+}
+
+.details-show article p {
+	text-align: justify;
+}
+
+@media (max-width: 768px) {
+	.details-show {
+		flex-direction: column;
+	}
 }

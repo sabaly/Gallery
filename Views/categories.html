@@ -1,15 +1,3 @@
-<?php
-	require "../Models/autoload.php";
-	$db = DBFactory::getMysqlConnexionWithPDO();
-
-	/*
-		Récupération des catégories
-	*/
-	//{
-		$categorieManager = new categorieManager_PDO($db);
-		$categories = $categorieManager->listcategories();
-	//}
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,9 +38,9 @@
 			<p>Beauté et Qualité</p>
 		</div>
 
-		<div class="search-input">
-			<input type="hidden" name="search">
-			<i class="icofont-search btn" id="search-btn"></i>
+		<div class="status-menu">
+			<span class="status d-none"></span>
+			<i class="icofont-ban btn" id="status-btn"></i>
 			<button class="btn menu-toggle"><i class="icofont-navigation-menu"></i></button>
 
 			<div class="d-none  rounded rounded-circle menu">
@@ -83,11 +71,6 @@
 		<article class="bg-white products-container">
 			<div class="categorie-menu">
 				<select onchange="reloadCategorie(this)">
-					<?php 
-						foreach ($categories as $categorie) {
-					?>
-					<option value="<?=$categorie->idCategorie() ; ?>"><?= $categorie->nameCategorie() ?></option>
-					<?php } ?>
 				</select>
 			</div>
 
@@ -95,6 +78,22 @@
 			</div>
 
 		</article>
+
+		<div class="login bg-white inCategorie rounded rounded-circle" data-aos='flip-down' data-aos-duration = '1500' data-aos-offset="300" data-aos-easing="ease-in-sine" id="sign">
+			<form id="catlogin-form">
+				<div class="form-group">
+					<input type="text" name="pseudo" class="pseudo form-control" placeholder="identifiant">
+				</div>
+				<div class="form-group">
+					<input type="password" name="psswd" class="form-control" placeholder="mot de passe">
+					<span class="alert connexion d-none"></span>
+				</div>
+
+				<div class="text-center">
+	            	<button type="submit" class="btn" >Se connecter</button>
+	            </div>
+			</form>
+		</div>
 	</main>
 
 
@@ -102,12 +101,40 @@
 		Footer
 	-->
 	<footer id="footer">
+
+		<!--	Détails show	-->
+		<div class="details-show container-fluid" id="view">
+			<aside>
+				<img src="../assets/img/saly.jpg">
+			</aside>
+
+			<article>
+				<h2>categorie</h2><p class="Categorie">-</p>
+
+				<h2>Détails</h2>
+				<p class="details">
+						-
+				</p>
+
+				<h2>Date d'ajout </h2> <p class="dateAjout">Not set</p>
+
+				<h2>Dernière modification </h2><p class="dateModif">Not set</p>
+			</article>
+		</div>
+
 		<div class="copyright">
 			&copy; <strong><span>Salmy Shop</span></strong>-2020, salmybusiness-shop@gmail.com <br> Design by <strong>S@dmin</strong>
 		</div>
 	</footer>
 
 	<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+	<audio id="likeAudio">
+		<source src="../assets/sounds/like.mp3" type="audio/mpeg">
+	</audio>
+
+	<audio id="heartAudio">
+		<source src="../assets/sounds/heart.mp3" type="audio/mpeg">
+	</audio>
 
 	<!--
 		Vendor JS
@@ -120,6 +147,9 @@
 	<script type="text/javascript" src="../assets/vendor/waypoints/jquery.waypoints.min.js"></script>
 	<script type="text/javascript" src="../assets/vendor/counterup/counterup.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	
+	<!-- JS files -->
+	<script type="text/javascript" src="../assets/js/functions.js"></script>
 	<script type="text/javascript" src="../assets/js/index.js"></script>
 
 	<!--aos master-->
