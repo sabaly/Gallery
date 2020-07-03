@@ -48,6 +48,17 @@ CREATE TABLE client
 );
 
 /*
+	Admins table
+*/
+CREATE TABLE admin
+(
+	idAdmin 					integer 			not null auto_increment,
+	pseudo 					char(150) 			not null,
+	password 				char(100) 			not null,
+	constraint pk_admin primary key (idAdmin)
+);
+
+/*
 	La table reaction
 */
 CREATE TABLE reaction

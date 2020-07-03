@@ -453,17 +453,64 @@ i {
 	border-radius: 5px;
 }
 
-#contact-form input, #contact-form textarea {
+.contact-form input, #contact-form textarea {
 	color: #ff007a;
 }
 
-#contact-form button {
+.contact-form button {
 	background-color: rgba(255, 0, 122, 0.6);
 	color: #fff;
 }
-#contact-form button:hover {
+.contact-form button:hover {
 	background-color: rgba(255, 0, 122, 1);
 }
+
+.contact-form .php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.contact-form .php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact-form .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact-form .php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.contact-form .php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
 
 
 /*
