@@ -17,8 +17,8 @@ class categorieManager_PDO extends categorieManager
 	*/
 	public function addCategorie(Categorie $categorie)
 	{
-		$request = $this->db->prepare('INSERT INTO categorie(nameCategorie, describeCategorie)
-			VALUES (:name, :describe); ');
+		$request = $this->db->prepare('INSERT INTO categorie(nameCategorie, describeCategorie, dateAjout, dateModif)
+			VALUES (:name, :describe, NOW(), NOW()); ');
 		$request->bindValue(':name', $categorie->nameCategorie());
 		$request->bindValue(':describe', $categorie->describeCategorie());
 
@@ -30,7 +30,7 @@ class categorieManager_PDO extends categorieManager
 	*/
 	public function updateCategorie(Categorie $categorie)
 	{
-		$request = $this->db->prepare('UPDATE categorie SET nameCategorie = :name, describeCategorie = :describe WHERE idCategorie = :id');
+		$request = $this->db->prepare('UPDATE categorie SET nameCategorie = :name, describeCategorie = :describe, dateModif = NOW() WHERE idCategorie = :id');
 		$request->bindValue(':name', $categorie->nameCategorie());
 		$request->bindValue(':describe', $categorie->describeCategorie());
 		$request->bindValue(':id', $categorie->idCategorie());
@@ -51,7 +51,7 @@ class categorieManager_PDO extends categorieManager
 	*/
 	public function listCategories($begin = -1, $end = -1)
 	{
-		$sql = 'SELECT idCategorie, nameCategorie, describeCategorie FROM categorie';
+		$sql = 'SELECT idCategorie, nameCategorie, describeCategorie, dateAjout, dateModif FROM categorie';
 
 		// On vérifie l'intégrité des paramètres fournis.
 		if ($begin != -1 || $end != -1)
@@ -63,13 +63,13 @@ class categorieManager_PDO extends categorieManager
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Categorie');
 		$listCategorie = $request->fetchAll();
 
-		/*
-		foreach ($listeDeDiscussions as $discuss)
+		
+		foreach ($listCategorie as $categorie)
 		{
-			$discuss->setDatedajout_discuss(new DateTime($discuss->datedajout_discuss()));
-			$discuss->setDatemodif_discuss(new DateTime($discuss->datemodif_discuss()));
+			$categorie->setDateAjout(new DateTime($categorie->dateAjout()));
+			$categorie->setDateModif(new DateTime($categorie->dateModif()));
 		}
-		*/
+		
 
 		$request->closeCursor();
 
@@ -82,18 +82,18 @@ class categorieManager_PDO extends categorieManager
 
 	public function getUnique($id)
 	{
-		$sql = 'SELECT idCategorie, nameCategorie, describeCategorie FROM categorie WHERE idCategorie = :id';
+		$sql = 'SELECT idCategorie, nameCategorie, describeCategorie, dateAjout, dateModif FROM categorie WHERE idCategorie = :id';
 		$request = $this->db->prepare($sql);
 		$request->bindValue(':id', (int) $id);
 		$request->execute();
 
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Categorie');
-		$categorie = $request->fetchAll();
+		$categorie = $request->fetch();
 
-		/*
-		$categorie->setDatedajout_discuss(new DateTime($categorie->datedajout_discuss()));
-		$categorie->setDatemodif_discuss(new DateTime($categorie->datemodif_discuss()));
-		*/
+		
+		$categorie->setDateAjout(new DateTime($categorie->dateAjout()));
+		$categorie->setdateModif(new DateTime($categorie->dateModif()));
+		
 		if(is_bool($categorie))
 			return false;
 

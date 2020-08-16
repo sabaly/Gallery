@@ -21,6 +21,8 @@ CREATE TABLE categorie
 	idCategorie 				integer 			not null auto_increment,
 	nameCategorie 				char(150) 			not null,
 	describeCategorie 			long varchar 			null,
+	dateAjout 					datetime 			not null,
+	dateModif 					datetime 			not null,
 	constraint pk_categorie primary key (idCategorie)
 );
 
@@ -33,6 +35,8 @@ CREATE TABLE article
 	idCategorie 				integer				not null,
 	image						char(255)			not null,
 	details 					long varchar 			null,
+	dateAjout 					datetime 			not null,
+	dateModif 					datetime 			not null,
 	constraint pk_article primary key(idArticle)
 );
 

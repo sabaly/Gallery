@@ -17,8 +17,8 @@ class articleManager_PDO extends articleManager
 	*/
 	public function addArticle(Article $article)
 	{
-		$request = $this->db->prepare('INSERT INTO article(idCategorie, image, details)
-			VALUES (:id, :image, :details);');
+		$request = $this->db->prepare('INSERT INTO article(idCategorie, image, details, dateAjout, dateModif)
+			VALUES (:id, :image, :details, NOW(), NOW());');
 		$request->bindValue(':id', $article->idCategorie());
 		$request->bindValue(':image', $article->image());
 		$request->bindValue(':details', $article->details());
@@ -31,7 +31,7 @@ class articleManager_PDO extends articleManager
 	*/
 	public function updateArticle(Article $article)
 	{
-		$request = $this->db->prepare('UPDATE article SET idCategorie = :idCat, image = :image, details = :details WHERE idArticle = :id');
+		$request = $this->db->prepare('UPDATE article SET idCategorie = :idCat, image = :image, details = :details, dateModif = NOW() WHERE idArticle = :id');
 		$request->bindValue(':idCat', $article->idCategorie());
 		$request->bindValue(':image', $article->image());
 		$request->bindValue(':details', $article->details());
@@ -53,19 +53,18 @@ class articleManager_PDO extends articleManager
 	*/
 	public function listArticlesOfCategorie($idCategorie)
 	{
-		$sql = 'SELECT idArticle, idCategorie, image, details FROM article WHERE idCategorie ='. (int) $idCategorie;
+		$sql = 'SELECT idArticle, idCategorie, image, details, dateAjout, dateModif FROM article WHERE idCategorie ='. (int) $idCategorie;
 
 		$request = $this->db->query($sql);
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Article');
 		$listArticlesOfCategorie = $request->fetchAll();
 
-		/*
+		
 		foreach ($listArticlesOfCategorie as $article)
 		{
-			$discuss->setDatedajout_discuss(new DateTime($discuss->datedajout_discuss()));
-			$discuss->setDatemodif_discuss(new DateTime($discuss->datemodif_discuss()));
+			$article->setDateAjout(new DateTime($article->dateAjout()));
+			$article->setDateModif(new DateTime($article->dateModif()));
 		}
-		*/
 
 		$request->closeCursor();
 
@@ -77,7 +76,7 @@ class articleManager_PDO extends articleManager
 	*/
 	public function listArticles($begin = -1, $end = -1)
 	{
-		$sql = 'SELECT idArticle, idCategorie, image, details FROM article';
+		$sql = 'SELECT idArticle, idCategorie, image, details, dateAjout, dateModif FROM article';
 
 		//On vérifie l'intégrité des paramètres fournis.
 		if ($begin != -1 || $end != -1)
@@ -89,13 +88,12 @@ class articleManager_PDO extends articleManager
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Article');
 		$listArticle = $request->fetchAll();
 
-		/*
-		foreach ($listeDeDiscussions as $discuss)
+		
+		foreach ($listArticle as $article)
 		{
-			$discuss->setDatedajout_discuss(new DateTime($discuss->datedajout_discuss()));
-			$discuss->setDatemodif_discuss(new DateTime($discuss->datemodif_discuss()));
+			$article->setDateAjout(new DateTime($article->dateAjout()));
+			$article->setDateModif(new DateTime($article->dateModif()));
 		}
-		*/
 
 		$request->closeCursor();
 
@@ -108,18 +106,18 @@ class articleManager_PDO extends articleManager
 
 	public function getUnique($id)
 	{
-		$sql = 'SELECT idArticle, idCategorie, image, details FROM article WHERE idArticle = :id';
+		$sql = 'SELECT idArticle, idCategorie, image, details, dateAjout, dateModif FROM article WHERE idArticle = :id';
 		$request = $this->db->prepare($sql);
 		$request->bindValue(':id', (int) $id);
 		$request->execute();
 
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Article');
-		$article = $request->fetchAll();
+		$article = $request->fetch();
 
-		/*
-		$article->setDatedajout_discuss(new DateTime($article->datedajout_discuss()));
-		$article->setDatemodif_discuss(new DateTime($article->datemodif_discuss()));
-		*/
+		
+		$article->setDateAjout(new DateTime($article->dateAjout()));
+		$article->setDateModif(new DateTime($article->dateModif()));
+		
 		if(is_bool($article))
 			return false;
 

@@ -7,7 +7,9 @@ class Article
 	public $idArticle,
 			$idCategorie,
 			$image,
-			$details;
+			$details,
+			$dateAjout,
+			$dateModif;
 
 	function __construct($data = [])
 	{
@@ -56,9 +58,21 @@ class Article
 		$this->details = $details;
 	}
 
+	public function setDateAjout(DateTime $date)
+	{
+		$this->dateAjout = $date;
+	}
+
+	public function setDateModif(DateTime $date)
+	{
+		$this->dateModif = $date;
+	}
+
 	//getters
 	public function idArticle() { return $this->idArticle ; }
 	public function idCategorie() { return $this->idCategorie ; }
 	public function image() { return $this->image ; }
 	public function details() { return $this->details ; }
+	public function dateAjout() { return $this->dateAjout; }
+	public function dateModif() { return $this->dateModif; }
 }

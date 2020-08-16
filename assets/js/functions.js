@@ -435,14 +435,26 @@ function showArticle(eye) {
 		data : 'showArt=' + idArticle,
 		success : function(msg) {
 			let article = JSON.parse(msg);
-
+			console.log(article);
 			$('#view .Categorie').html(nameCategorie);
-			$('#view .details').html(article[0].details);
-			$('#view img').attr('src', '../assets/img/'+article[0].image);
-			$('#view .dateAjout').html('Not set');
-			$('#view .dateModif').html('Not set');
+			$('#view .details').html(article.details);
+			$('#view img').attr('src', '../assets/img/'+article.image);
+			$('#view .dateAjout').html(formatDate(article.dateAjout.date));
+			$('#view .dateModif').html(formatDate(article.dateModif.date));
 		}
 	});
 }
 
+function formatDate(theDate) {
+	theDate = new Date(theDate);
 
+	let days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+	let months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre',
+	'Octobre', 'Novembre', 'Decembre'];
+
+	let stringDate = days[theDate.getDay()-1] + ' ' + theDate.getDate();
+	stringDate += ' ' + months[theDate.getMonth()];
+	stringDate += ' à ' + theDate.getHours() + 'h ' + theDate.getMinutes() + 'min';
+
+	return stringDate;
+}

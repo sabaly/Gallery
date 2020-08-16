@@ -7,7 +7,9 @@ class Categorie
 {
 	public $idCategorie,
 			$nameCategorie,
-			$describeCategorie;
+			$describeCategorie,
+			$dateAjout,
+			$dateModif;
 	
 	function __construct($data = [])
 	{
@@ -52,8 +54,20 @@ class Categorie
 		$this->describeCategorie = $describe;
 	}
 
+	public function setDateAjout(DateTime $date)
+	{
+		$this->dateAjout = $date;
+	}
+
+	public function setDateModif(DateTime $date)
+	{
+		$this->dateModif = $date;
+	}
+
 	//getters
 	public function idCategorie() { return $this->idCategorie; }
 	public function nameCategorie() { return $this->nameCategorie; }
 	public function describeCategorie() { return $this->describeCategorie; }
+	public function dateAjout() { return $this->dateAjout; }
+	public function dateModif() { return $this->dateModif; }
 }

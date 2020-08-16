@@ -343,7 +343,9 @@ i {
 }
 
 
-.signin, .login, .toggled-login {
+
+
+.signin, .login {
 	flex: 1;
 	text-align: center;
 	width: 40%;
@@ -351,8 +353,12 @@ i {
 	height: 70vh;
 }
 
+.incategorie {
+	width: 60%;
+}
 
-#signin-form, #login-form, #catlogin-form {
+
+#signin-form, #login-form {
 	margin: 10px;
 	padding: 10px;
 	color: #fff;
@@ -361,6 +367,18 @@ i {
 	text-align: center;
 	position: relative;
 	left: 25%;
+	top: 25%;
+}
+
+#catlogin-form {
+	margin: 10px;
+	padding: 10px;
+	color: #fff;
+	width: 50%;
+	color: #ff007a;
+	text-align: center;
+	position: relative;
+	left: 0%;
 	top: 25%;
 }
 
@@ -381,12 +399,12 @@ i {
 		flex-direction: column;
 	}
 
-	.signin, .login {
-		width: 100%;
+	.inCategorie, .login, .signin {
+		width: 100%;	
 	}
 
 
-	#signin-form, #login-form {
+	#signin-form, #login-form, #catlogin-form {
 		top: 10px;
 		width: 40%;
 		padding-top: 15px;
@@ -395,6 +413,9 @@ i {
 		padding-right: 2px;
 	}
 
+	#catlogin-form {
+		left: 25%;
+	}
 }
 
 /*

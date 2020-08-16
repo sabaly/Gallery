@@ -44,22 +44,40 @@
 	*/
 	$articleManager = new articleManager_PDO($db);
 
-	if(isset($_POST['idCategorie']) && isset($_FILES['image']))
+	if(isset($_POST['idCategorie']))
 	{
 
-		$article = new article
+		$article = new Article
 		(
 			[
 				'idCategorie' => $_POST['idCategorie'],
-				'image' => $_FILES['image']['name']
 			]
 		);
 
-		if(isset($_POST['idArticle'])){
+		if(isset($_FILES['image']) && !empty($_FILES['image']['name']))
+		{
+			$article->setImage($_FILES['image']['name']);
+
+			move_uploaded_file($_FILES['image']['tmp_name'], '../assets/img/'.$_FILES['image']['name']);
+		}
+		else if(isset($_POST['idArticle']))
+		{
 			$article->setIdArticle($_POST['idArticle']);
+
+	
+			$article_tmp = $articleManager->getUnique($_POST['idArticle']);
+
+			if(is_bool($article_tmp))
+			{
+				return false;
+			}
+			else
+			{
+				$article->setImage($article_tmp->image());
+			}
 		}
 
-		move_uploaded_file($_FILES['image']['tmp_name'], '../assets/img/'.$_FILES['image']['name']);
+		
 
 		if(isset($_POST['details']))
 			$article->setDetails(htmlspecialchars($_POST['details']));
@@ -94,10 +112,12 @@
 	}
 
 	//Delete the categorie
-	if(isset($_GET['del']))
+	if(isset($_GET['delCat']))
 	{
-		$categorieManager->deleteCategorie($_GET['del']);
+		
+		$categorieManager->deleteCategorie($_GET['delCat']);
 		echo 'DELETED';
+		
 	}
 
 
