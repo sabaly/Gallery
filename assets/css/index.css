@@ -5,6 +5,19 @@ body {
 	font-family: Poppins, sans-serif;
 	background-color: rgba(255, 0, 122, 0.1);
 }
+
+.error {
+	border: 1px solid #f00;
+}
+.alert {
+	font-size: 10px;
+}
+.connexion {
+	font-size: 20px;
+}
+.react {
+	color: #ff007a;
+}
 /*
 	Header
 */
@@ -16,9 +29,8 @@ body {
 	padding-top: 15px;
 	display: flex;
 	justify-content: space-around;
-	/*box-shadow: 2px 12px 12px  #FF3ABF;*/
 }
-#header .search-input {
+#header .status-menu {
 	margin-top: 20px;
 	padding: 10px;
 	color: #ff007a;
@@ -32,17 +44,17 @@ body {
 	color: #808080;
 }
 
-#header .search input{
-	border-radius: 15px;
-	border-radius: 0.5px solid #808080;
 
-}
-
-#search-btn{
+#status-btn{
 	color: rgba(255, 0, 122, 0.7);
 }
 
-#search-btn:hover {
+.status {
+	padding: 10px;
+	color: #0f0;
+}
+
+#status-btn:hover {
 	color: #ff007a;
 }
 
@@ -150,15 +162,15 @@ body {
 }
 
 #banner button {
-	background: #ff007a;
+	background: rgba(255, 0, 122, 0.3);
 	color: #fff;
 	font-size: 25px;
 }
 
 #banner button:hover {
 	transition: 1s;
-	background: #fff;
-	color: #ff007a;
+	color: #fff;
+	background: #ff007a;
 }
 #banner button a {
 	text-decoration: none;
@@ -221,8 +233,19 @@ body {
 .about-block .slider {
 	flex: 1;
 }
+.about-block button {
+	background: rgba(255, 0, 122, 0.3);
+	color: #fff;
+	font-size: 15px;
+}
+.about-block button:hover {
+	transition: 0.3s;
+	color: #fff;
+	background: #ff007a;
+}
 
-#gallerie h2, #gallerie p, #contact h2, #contact p{
+
+#gallerie h2, #gallerie p, #contact h2, #contact p, #connect h2, #connect p{
 	text-align: center;
 	color: #808080;
 }
@@ -245,7 +268,7 @@ body {
 	color: #fff;
 }
 
-.articles-categorie-1, .articles-categorie-2 {
+.articles-categorie {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 10px;
@@ -257,13 +280,13 @@ body {
 	margin-top: 20px; 
 }
 
-.articles-categorie-1 img, .articles-categorie-2 img{
-	width: 200px;
-	height: 200px;
+.articles-categorie img{
+	width: 250px;
+	height: 250px;
 }
 
 @media (max-width: 768px){
-	.articles-categorie-1 img, .articles-categorie-2 img {
+	.articles-categorie img {
 		width: 300px;
 		height: 300px;
 	}
@@ -278,12 +301,12 @@ body {
 	font-size: 20px;
 }
 
-.articles-categorie-1 img:hover, .articles-categorie-2 img:hover {
+.articles-categorie img:hover {
 	background: rgba(0, 0, 0, 0.5);
 }
 
-.articles-categorie-1 .article:hover, .articles-categorie-2 .article:hover {
-	transition: 1s;
+.article:hover, .article:hover {
+	transition: 0.4s;
 	display: block;
 	box-shadow: 0px 0px 15px 0px #000;
 }
@@ -305,9 +328,100 @@ i {
 	flex-direction: row;
 }
 
+
+/*
+	Forms login and sigin
+*/
+#connect {
+	margin: 40px;
+}
+
+.sign {
+	margin: 20px;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+
+
+.signin, .login {
+	flex: 1;
+	text-align: center;
+	width: 40%;
+	margin: auto;
+	height: 70vh;
+}
+
+.incategorie {
+	width: 60%;
+}
+
+
+#signin-form, #login-form {
+	margin: 10px;
+	padding: 10px;
+	color: #fff;
+	width: 50%;
+	color: #ff007a;
+	text-align: center;
+	position: relative;
+	left: 25%;
+	top: 25%;
+}
+
+#catlogin-form {
+	margin: 10px;
+	padding: 10px;
+	color: #fff;
+	width: 50%;
+	color: #ff007a;
+	text-align: center;
+	position: relative;
+	left: 0%;
+	top: 25%;
+}
+
+
+#signin-form input, #login-form input, #catlogin-form input {
+	border-color: rgba(255, 0, 122, 0.3);
+}
+
+#signin-form button, #login-form button, #catlogin-form button {
+	background-color: rgba(255, 0, 122, 0.6);
+	color: #fff;
+}
+#signin-form button:hover, #login-form button:hover, #catlogin-form button {
+	background-color: #ff007a;
+}
+@media (max-width: 768px) {
+	.sign {
+		flex-direction: column;
+	}
+
+	.inCategorie, .login, .signin {
+		width: 100%;	
+	}
+
+
+	#signin-form, #login-form, #catlogin-form {
+		top: 10px;
+		width: 40%;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+
+	#catlogin-form {
+		left: 25%;
+	}
+}
+
 /*
 	Contact
 */
+
 #contact {
 	margin: 50px;
 }
@@ -360,17 +474,64 @@ i {
 	border-radius: 5px;
 }
 
-#contact-form input, #contact-form textarea {
+.contact-form input, #contact-form textarea {
 	color: #ff007a;
 }
 
-#contact-form button {
+.contact-form button {
 	background-color: rgba(255, 0, 122, 0.6);
 	color: #fff;
 }
-#contact-form button:hover {
+.contact-form button:hover {
 	background-color: rgba(255, 0, 122, 1);
 }
+
+.contact-form .php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.contact-form .php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact-form .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact-form .php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.contact-form .php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
 
 
 /*
@@ -469,10 +630,52 @@ i {
 	border: 0.5px solid rgba(0,0,0,0.2);
 }
 
+.article-text a {
+	text-decoration: none;
+	color: #808080;
+}
+
 .categorie-menu select{
 	border-radius: 15px;
 	border: 0px;
 	color: #ff007a;
 	background: rgba(0, 0, 0, 0.9);
 	padding: 5px;
+}
+
+
+/* show */
+.details-show {
+	margin-top: 20px;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	justify-content: space-around;
+	padding: 20px;
+	color: #fff;
+}
+
+.details-show aside {
+	flex: 0.7;
+}
+
+.details-show aside img {
+	width: 90%;
+}
+.details-show article {
+	flex: 0.3;
+	padding: 10px;
+}
+.details-show article h2{
+	color: #ff007a;
+}
+
+.details-show article p {
+	text-align: justify;
+}
+
+@media (max-width: 768px) {
+	.details-show {
+		flex-direction: column;
+	}
 }
